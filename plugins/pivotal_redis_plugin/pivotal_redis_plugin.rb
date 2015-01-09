@@ -47,8 +47,7 @@ module RedisPlugin
 
     # The block runs in the context of the agent instance.
     #
-    if :hostport then agent_human_labels("Redis") { "#{hostname}:#{hostport}" }
-    else agent_human_labels("Redis") { "#{hostname}:80" } end
+    agent_human_labels("Redis") { agent_name || [hostname, hostport].join(":") }
 
     def setup_metrics
       @metric_types = Hash.new("unit") # Default metric label
