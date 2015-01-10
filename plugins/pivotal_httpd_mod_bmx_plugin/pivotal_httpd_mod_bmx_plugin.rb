@@ -54,8 +54,7 @@ module HttpdModBmxPlugin
 
     # The block runs in the context of the agent instance.
     #
-    if :hostport then agent_human_labels("ModBmx") { "#{hostname}:#{hostport}" }
-    else agent_human_labels("ModBMX") { "#{hostname}:80" } end
+    agent_human_labels("ModBMX") { agent_name || [hostname,hostport].join(":") }
 
     def setup_metrics
       if !self.hostport then self.hostport = 80 end
